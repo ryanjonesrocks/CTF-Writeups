@@ -1,3 +1,5 @@
+#Misc04
+
 ```
 nc misc04.grandprix.whitehatvn.com 1337
 
@@ -5,7 +7,7 @@ Hint:
 After get the message "It's a friendly point", you should send the friendly point value.
 ```
 
-The challenge presents us with a netcat for misc04.grandprix.whitehatvn.com on port 1337. We can see that the formula for solving this challenge is 
+The challenge presents us with a netcat for `misc04.grandprix.whitehatvn.com` on port `1337`. We can see that the formula for solving this challenge is 
 `(lip point**nose point)**(eyes point**forehead point) mod Face_index`
 
 ```
@@ -153,7 +155,8 @@ $_$            172140442      627220622      609491746      510340778
 So, what is the most friendly face?
 ```
 
-The numbers for the formula `(lip point**nose point)**(eyes point**forehead point) mod Face_index` are too large to compute on Python or C, so an alternative approach is needed to solve this challenge. The issue with solving this challenge is that we are dealing with integers larger than 64 bit which takes too much processing power in C or Python. In order to solve this problem we must understand modular exponentiation and the algorithms needed to implement it. Through a bit of searching we were able to find an approach of how to solve big integer math that followed the pattern of 9a^b^c^d mod m](https://stackoverflow.com/questions/4223313/finding-abc-mod-m)
+The numbers for the formula `(lip point**nose point)**(eyes point**forehead point) mod Face_index` are too large to compute on Python or C, so an alternative approach is needed to solve this challenge. The issue with solving this challenge is that we are dealing with integers larger than 64 bit which takes too much processing power in C or Python. In order to solve this problem we must understand modular exponentiation and the algorithms needed to implement it. Through a bit of searching we were able to find an approach of how to solve big integer math that followed the pattern of [a^b^c^d mod m](https://stackoverflow.com/questions/4223313/finding-abc-mod-m)
+
 
 
 
