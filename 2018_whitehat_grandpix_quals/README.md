@@ -1,11 +1,13 @@
-````
+```
 nc misc04.grandprix.whitehatvn.com 1337
 
 Hint:
 After get the message "It's a friendly point", you should send the friendly point value.
 ```
+
 The challenge presents us with a netcat for misc04.grandprix.whitehatvn.com on port 1337. We can see that the formula for solving this challenge is 
 `(lip point**nose point)**(eyes point**forehead point) mod Face_index`
+
 ```
                    Wellcom to Friendly face challenge
 According to experts, the formula for measuring the friendliness of a face is
