@@ -163,7 +163,8 @@ Finally we get the flag...
 Yet this flag was still incorrect, what's the issue?? It turns out we need to compute the SHA-1 of the message digest.
 
 
-```echo -n "^.^_M4th_Math_Chin3se_Rema1nder_The0rem_&_Euler's_ThEorem_M@th_MAth_^/^" | sha1sum
+```
+echo -n "^.^_M4th_Math_Chin3se_Rema1nder_The0rem_&_Euler's_ThEorem_M@th_MAth_^/^" | sha1sum
 883e8e59798f1884c3873ff5f47aaeea089097f9  -
 ```
 
