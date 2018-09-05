@@ -155,14 +155,12 @@ $_$            172140442      627220622      609491746      510340778
 So, what is the most friendly face?
 ```
 
-The numbers for the formula `(lip point**nose point)**(eyes point**forehead point) mod Face_index` are too large to compute on Python or C, so an alternative approach is needed to solve this challenge. The issue with solving this challenge is that we are dealing with integers larger than 64 bit which takes too much processing power in C or Python. In order to solve this problem we must understand modular exponentiation and the algorithms needed to implement it. Through a bit of searching we were able to find an approach of how to solve big integer math that followed the pattern of [a^b^c^d mod m](https://stackoverflow.com/questions/4223313/finding-abc-mod-m)
+The numbers for the formula `(lip point**nose point)**(eyes point**forehead point) mod Face_index` are too large to compute in Python or C, so an alternative approach is needed to solve this challenge. The issue with solving this challenge is that we are dealing with integers larger than 64 bit which takes too much processing power in C or Python. In order to solve this problem we must understand modular exponentiation and the algorithms needed to implement it. Through a bit of searching we were able to find an approach of how to solve big integer math that followed the pattern of [a^b^c^d mod m](https://stackoverflow.com/questions/4223313/finding-abc-mod-m). Since the numbers are coprime we can use Euler's totient function along with Chinese remaineder theorm to solve the challenge. See the full python script on this implementation.
 
 
-
-
-Flag
+Finally we get the flag...
 ` "Congrats! Flag, flag, flag!: WhiteHat{^.^_M4th_Math_Chin3se_Rema1nder_The0rem_&_Euler's_ThEorem_M@th_MAth_^/^}\n"`
-Yet this flag was still incorrected?? It turns out we need to compute the SHA-1 message digest.
+Yet this flag was still incorrect, what's the issue?? It turns out we need to compute the SHA-1 of the message digest.
 
 
 ```echo -n "^.^_M4th_Math_Chin3se_Rema1nder_The0rem_&_Euler's_ThEorem_M@th_MAth_^/^" | sha1sum
@@ -171,5 +169,4 @@ Yet this flag was still incorrected?? It turns out we need to compute the SHA-1 
 
 WhiteHat{883e8e59798f1884c3873ff5f47aaeea089097f9}
 
-I believe this challenge is useful because it educates someone on how to compute integers larger than 64 bit and the algorithms needed to compute it. Credit to the pwndevils for helping solve this challenge.
 
