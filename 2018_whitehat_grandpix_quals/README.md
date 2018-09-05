@@ -1,4 +1,4 @@
-#Misc04
+# Misc04
 
 ```
 nc misc04.grandprix.whitehatvn.com 1337
