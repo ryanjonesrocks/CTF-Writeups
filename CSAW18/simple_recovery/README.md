@@ -1,7 +1,7 @@
 # simple_recovery
 Simple Recovery Try to recover the data from these RAID 5 images!
 
-#Solution
+# solution
 `strings disk.img0 | grep flag`
 
 ## flag
