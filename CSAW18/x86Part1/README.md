@@ -1,18 +1,18 @@
-#A Tour of x86 - Part 1
+# A Tour of x86 - Part 1
 
-##Introduction to Reverse Engineering (RE)
+## Introduction to Reverse Engineering (RE)
 This challenge is meant as an introduction to RE. For those unfamilar with Reverse engineering, it is defined as the dissection and understanding of SYSTEMS, not of CODE. Meaning that it's more about understanding how the system interacts instead of understanding 100% of the assembly code. This challenge is less of a vulnerability and more about learning RE. 
 
-##Approaching the problem
+## Approaching the problem
 This challenge presents us with three files: `Makefile stage-1.asm  stage-2.bin`. By reading through the files, only `stage-1.asm` is needed to solve this challenge. We're presented with an annotated assembly file that walks us through the challenge. 
 
-##Solution
+## Solution
 When we netcat into the server `nc rev.chal.csaw.io 9003`. We're presented with a long delay of text. This is meant to prevent bruteforcing and actually understand the problem. 
 
-###Stage1: What is the value of dh after line 129 executes? (Answer with a one-byte hex value, prefixed with '0x')
+### Stage1: What is the value of dh after line 129 executes? (Answer with a one-byte hex value, prefixed with '0x')
 At line 129 we see that, the assembly instruction is `xor dh, dh  ; <- Question 1`. xoring a number with itself is always 0, this is used to clear registers in assembly. Notice is asks for a one byte number. 0x0 would be incorrect because it is only 4 bits or half a byte. The correct answer is `0x00`
 
-###Stage2: What is the value of gs after line 145 executes? (Answer with a one-byte hex value, prefixed with '0x'
+### Stage2: What is the value of gs after line 145 executes? (Answer with a one-byte hex value, prefixed with '0x'
 
 ```
   mov dx, 0xffff  ; Hexadecimal
@@ -34,7 +34,7 @@ At line 129 we see that, the assembly instruction is `xor dh, dh  ; <- Question 
 
 In this stage, we need to trace through the `dx` register. We see initially it has a value of `0xffff`. The next instruction is `not dx`. The `not` instruction preforms a bit-wise inversion of the number. `not 0xffff` equals 0, so dx equals 0. `mov gs, dx` stores the value of dx into gs, so the answer will also be `0x00`
 
-###Stage3: What is the value of si after line 151 executes? (Answer with a two-byte hex value, prefixed with '0x')
+### Stage3: What is the value of si after line 151 executes? (Answer with a two-byte hex value, prefixed with '0x')
 
 We need to find the value of si, by tracing the value of sp, which leads to `cx`. `cx` also has a value of 0 but the challenge asks for a two byte hex value so the answer will be `0x0000`
 ```
@@ -46,7 +46,7 @@ mov cx, 0 ; The other two values get overwritten regardless, the value of ch and
   mov si, sp ; Source Index       <- Question 3
 ```
 
-###Stage4: What is the value of ax after line 169 executes? (Answer with a two-byte hex value, prefixed with '0x')
+### Stage4: What is the value of ax after line 169 executes? (Answer with a two-byte hex value, prefixed with '0x')
 
 ```
 ; New function
@@ -67,7 +67,7 @@ new_function:
 Hint: `AH + 0x0e allows us to print the 8-bit ASCII letter stored in the low 8-bit portion of the a register: al.` The payload must contain 0x0e as the first 8 bits (1 byte) and the letter 't' as the second 8 bits. Characters in assembly are represented in ASCII in the form of hexadecimal. In Python, we can convert t to ASCII using `hex(ord('t'))`. This final payload will be `0x0e74`
 
 
-###Stage5: What is the value of ax after line 199 executes for the first time? (Answer with a two-byte hex value, prefixed with '0x')
+### Stage5: What is the value of ax after line 199 executes for the first time? (Answer with a two-byte hex value, prefixed with '0x')
 Print the first character of the string. Final Payload `0x0e61`.
 
 ```
@@ -84,5 +84,5 @@ Print the first character of the string. Final Payload `0x0e61`.
     .end:
 ```
 
-##Flag
+## Flag
 `flag{rev_up_y0ur_3ng1nes_reeeeeeeeeeeeecruit5!}`. I solved this challenge using pwntools, check out my script for the full exploit. 
