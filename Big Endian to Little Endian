@@ -1,0 +1,1 @@
+python -c "from pwn import *; print repr(p32(0x080485cb))"
